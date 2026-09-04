@@ -14,8 +14,11 @@ dotenv.config()
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Allowed frontend origins for CORS with credentials
-const allowedOrigins = [
+// Render sits behind a reverse proxy. Trusting its first proxy keeps request
+// protocol information correct in production.
+app.set("trust proxy", 1);
+
+const localOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
@@ -23,14 +26,28 @@ const allowedOrigins = [
   'http://127.0.0.1:3001'
 ];
 
+// Comma-separated production frontend origins, for example:
+// FRONTEND_URLS=https://medflowai.vercel.app,https://www.medflowai.com
+const configuredOrigins = (process.env.FRONTEND_URLS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+const allowedOrigins = [
+  ...new Set(
+    process.env.NODE_ENV === "production"
+      ? configuredOrigins
+      : [...localOrigins, ...configuredOrigins]
+  ),
+];
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, postman) or matching whitelist
-      if (!origin || allowedOrigins.includes(origin) || origin.startsWith('http://localhost:')) {
+      // Permit same-server probes (Render) and explicit frontend origins only.
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(null, true); // Fallback allow in dev
+        callback(new Error(`Origin not allowed by CORS: ${origin}`));
       }
     },
     credentials: true,
@@ -40,6 +57,11 @@ app.use(
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 app.use(cookieParser())
+
+// Used by Render health checks and external uptime monitors.
+app.get("/health", (req, res) => {
+  res.status(200).json({ success: true, service: "medflowai-api", status: "healthy" });
+});
 
 app.use("/api", router);
 
