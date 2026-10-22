@@ -13,8 +13,6 @@ import {
   Users,
   ArrowRight,
   LogIn,
-  UserPlus,
-  Building2,
   Stethoscope,
   Lock,
   Cpu,
@@ -58,7 +56,7 @@ export default function Home() {
                   className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-medical-600 to-clinic-600 hover:from-medical-700 hover:to-clinic-700 text-white font-bold text-xs shadow-xs transition"
                 >
                   <Activity className="w-4 h-4" />
-                  <span>Enter Doctor Clinical Workspace</span>
+                  <span>Doctor Workspace</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               )}
@@ -78,7 +76,7 @@ export default function Home() {
                     className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100 font-bold text-xs transition"
                   >
                     <ShieldCheck className="w-3.5 h-3.5 text-purple-600" />
-                    <span>Document Ops</span>
+                    <span>Document Manager</span>
                   </Link>
                 </div>
               )}
@@ -89,7 +87,7 @@ export default function Home() {
                   className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold text-xs shadow-xs transition"
                 >
                   <Users className="w-4 h-4" />
-                  <span>Open Receptionist Intake</span>
+                  <span>Receptionist Intake</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               )}
@@ -101,15 +99,8 @@ export default function Home() {
                 className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-clinic-600 via-teal-600 to-medical-600 hover:from-clinic-700 hover:to-medical-700 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow transition"
               >
                 <LogIn className="w-4 h-4" />
-                <span>Staff Sign In</span>
+                <span>Sign In</span>
                 <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/register"
-                className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-white border border-slate-200/90 hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm shadow-xs transition"
-              >
-                <Building2 className="w-4 h-4 text-purple-600" />
-                <span>Register Clinic (Admin)</span>
               </Link>
             </div>
           )}
@@ -194,7 +185,7 @@ export default function Home() {
               href="/doctor"
               className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-xl bg-medical-600 hover:bg-medical-700 text-white text-xs font-bold shadow-xs transition"
             >
-              Access Doctor Workspace
+              Doctor Workspace
             </Link>
           </div>
         </div>
@@ -232,7 +223,7 @@ export default function Home() {
               href="/knowledge"
               className="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-xl bg-clinic-600 hover:bg-clinic-700 text-white text-xs font-bold shadow-xs transition"
             >
-              Open Knowledge Copilot
+              Knowledge Copilot
             </Link>
           </div>
         </div>
@@ -270,13 +261,13 @@ export default function Home() {
               href="/admin/staff"
               className="inline-flex items-center justify-center w-1/2 px-3 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-[11px] font-bold shadow-xs transition"
             >
-              Staff Portal
+              Staff Management
             </Link>
             <Link
               href="/admin/knowledge"
               className="inline-flex items-center justify-center w-1/2 px-3 py-2.5 rounded-xl bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100 text-[11px] font-bold shadow-xs transition"
             >
-              Document Ops
+              Document Manager
             </Link>
           </div>
         </div>

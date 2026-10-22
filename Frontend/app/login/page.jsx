@@ -2,7 +2,6 @@
 
 import React, { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import {
   Stethoscope,
@@ -78,7 +77,7 @@ function LoginForm() {
             Sign In to <span className="bg-gradient-to-r from-clinic-700 via-teal-700 to-medical-600 bg-clip-text text-transparent">MedFlowAI</span>
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
-            Clinical staff (Doctors &amp; Receptionists) access workspaces with credentials provisioned by Hospital Administration.
+            Staff and administrators can sign in with their registered MedFlowAI account.
           </p>
         </div>
 
@@ -99,7 +98,7 @@ function LoginForm() {
             {/* Email Field */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                Staff Email Address
+                Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -159,23 +158,13 @@ function LoginForm() {
                 </>
               ) : (
                 <>
-                  <span>Sign In to Clinical Workspace</span>
+                  <span>Sign In</span>
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </button>
           </form>
 
-          {/* Registration Link */}
-          <div className="pt-2 text-center text-xs text-slate-500 border-t border-slate-100">
-            Need to onboard a new clinic or hospital facility?{" "}
-            <Link
-              href="/register"
-              className="font-bold text-purple-600 hover:text-purple-700 hover:underline transition"
-            >
-              Register Facility (Admin)
-            </Link>
-          </div>
         </div>
       </div>
     </div>

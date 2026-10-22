@@ -641,9 +641,9 @@ export default function DoctorWorkspacePage() {
         </div>
 
         {/* Top Banner with Patient Context */}
-        <div className="card-modern p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-medical-500 to-clinic-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+        <div className="card-modern p-5 flex flex-col md:flex-row md:flex-wrap md:items-center justify-between gap-4">
+          <div className="flex items-center space-x-4 min-w-0 flex-1">
+            <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-tr from-medical-500 to-clinic-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
               {(selectedPatient.name || "PT")
                 .split(" ")
                 .map((n) => n[0])
@@ -651,7 +651,7 @@ export default function DoctorWorkspacePage() {
                 .slice(0, 2)
                 .toUpperCase()}
             </div>
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-lg font-bold text-slate-900 tracking-tight">{selectedPatient.name}</h1>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono">
@@ -671,7 +671,7 @@ export default function DoctorWorkspacePage() {
                   <span>{selectedPatient.vitals}</span>
                 </p>
                 <span className="text-slate-300">•</span>
-                <p className="text-slate-600">
+                <p className="min-w-0 break-words whitespace-normal text-slate-600">
                   <strong className="text-slate-700">Chief Complaint:</strong> {selectedPatient.diagnosis}
                 </p>
               </div>
@@ -679,41 +679,41 @@ export default function DoctorWorkspacePage() {
           </div>
 
           {/* Segmented Tab Navigation (Apple / Linear style) */}
-          <div className="flex items-center p-1 bg-slate-100/90 rounded-xl self-start md:self-auto border border-slate-200/50">
+          <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-100/90 rounded-xl self-start md:self-auto border border-slate-200/50 max-w-full">
             <button
               onClick={() => setActiveTab("copilot")}
-              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
+              className={`flex shrink-0 items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
                 activeTab === "copilot"
                   ? "bg-white text-medical-700 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Stethoscope className="w-3.5 h-3.5 text-medical-600" />
-              <span>Consultation Copilot</span>
+              <span className="whitespace-nowrap">Consultation Copilot</span>
             </button>
 
             <button
               onClick={() => setActiveTab("timeline")}
-              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
+              className={`flex shrink-0 items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
                 activeTab === "timeline"
                   ? "bg-white text-medical-700 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Activity className="w-3.5 h-3.5 text-medical-600" />
-              <span>Patient Timeline (Twin)</span>
+              <span className="whitespace-nowrap">Patient Timeline (Twin)</span>
             </button>
 
             <button
               onClick={() => setActiveTab("knowledge")}
-              className={`flex items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
+              className={`flex shrink-0 items-center space-x-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition ${
                 activeTab === "knowledge"
                   ? "bg-white text-clinic-700 shadow-xs"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <BookOpen className="w-3.5 h-3.5 text-clinic-600" />
-              <span>Knowledge Copilot</span>
+              <span className="whitespace-nowrap">Knowledge Copilot</span>
             </button>
           </div>
         </div>
